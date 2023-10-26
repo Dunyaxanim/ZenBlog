@@ -1,6 +1,6 @@
 <footer id="footer" class="footer">
-
-    <div class="footer-content">
+<h1>{{ $keyfooter }}</h1>
+    <div class= "footer-content">
         <div class="container">
 
             <div class="row g-5">

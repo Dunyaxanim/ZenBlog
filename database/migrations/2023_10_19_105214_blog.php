@@ -31,13 +31,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('imgUrl');
+            $table->foreignId('category_id')->references('id')->on('categories')->cascadeOnDelete();
             $table->string('authorimgUrl');
             $table->string('authorName');
             $table->timestamps();
-            $table->unsignedBigInteger('category_id')->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
         });
     }
-
     /**
      * Reverse the migrations.
      */

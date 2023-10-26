@@ -44,5 +44,20 @@
             bsCustomFileInput.init();
         });
  </script>
+ <script>
+    document.querySelector(".old-password").addEventListener("input", function(e) {
 
+      const newPasswordElements = document.querySelectorAll(".new-password");
+
+  if (e.data !== null) {
+    newPasswordElements.forEach(element => {
+        element.removeAttribute("disabled");
+    });
+  } else {
+    newPasswordElements.forEach(element => {
+        element.setAttribute("disabled", "disabled");
+    });
+  }
+    });
+  </script>
 @yield('scripts');

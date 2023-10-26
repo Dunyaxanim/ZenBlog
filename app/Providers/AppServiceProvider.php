@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
+use App\Http\View\Composers\OtomosyonComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,18 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //view()->composer(harabondereceyimizi meselen header, function($view)){
-        // $view('categories',Catogory::withCount('posts')->all()) => buni cagirmaga ehtiyac yoxdur. cunku AppAerverProvider ilk isleyenlerdendir. ozu ise dusur. 
-        // }
-
-        // view()->composer('front.partials._header',function($view){
-        //     $view->with('categories',Category::withCount('posts')->all())
-        // });
-
-
         view()->composer('front.partials._header',function($view) {
             $categories = Category::withCount('posts')->get();
             $view->with('categories', $categories);
+        });
+        view()->composer('front.partials._footer', function ($view) {
+            $view->with('keyfooter', "bura footerdir");
         });
     }
 }

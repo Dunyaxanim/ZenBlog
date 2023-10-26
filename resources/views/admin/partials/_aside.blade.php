@@ -82,13 +82,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('blogList') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>All Blogs</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('blogCreate') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Create Blog</p>
                     </a>

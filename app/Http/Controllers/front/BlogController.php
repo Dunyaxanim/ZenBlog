@@ -14,8 +14,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs= Blog::get();
-        dd($blogs);
-        // return view('admin.pages.main',['blogs'=> $blogs]);
+        return view('admin.pages.main',['blogs'=> $blogs]);
     }
 
     /**

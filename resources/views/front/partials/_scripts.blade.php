@@ -10,4 +10,5 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('projects/front/js/main.js')}}"></script>
 
-    @yield('_scripts')
+
+@yield('_scripts')

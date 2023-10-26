@@ -10,11 +10,10 @@
              <ul>
                  <li><a href="{{ route('blog') }}">Blog</a></li>
                  <li><a href="{{ route('singleBloge') }}">Single Post</a></li>
-                 <li class="dropdown"><a href="{{route('categories') }}"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                 <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                      <ul>
-                         <li><a href="search-result.html">Search Result</a></li>
                          @foreach ( $categories as $key => $category )
-                             <li><a href="{{ route('category', $category) }}">{{ $category->name }}  {{ $category->post_count }}</a></li>
+                             <li><a href="{{ route('category', $category) }}">{{ $category->name }}  {{ $category->posts_count }}</a></li>
                          @endforeach
                      </ul>
                  </li>
@@ -22,12 +21,42 @@
                  <li><a href="{{ route('contact') }}">Contact</a></li>
              </ul>
          </nav><!-- .navbar -->
-
-         <div class="position-relative">
-             <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-             <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-             <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
+          <div class="position-relative d-flex gap-3">
+            <ul class="m-auto d-flex  list-unstyled gap-3">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown d-flex gap-2" >
+                                  <span class="nav-item" style="height: 30px; width: 30px; border-radius: 50%;">
+                                        <div class="photo" style="object-fit:cover; border-radius: 50%;"><img src='{{ asset('projects/auth/img/'. Auth::user()->imgUrl) }}"' alt="" class="img-fluid"></div>
+                                  </span>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    <a class="dropdown-item" href="{{ route('updateprofil',  Auth::user() ) }}">Edit Profil</a>
+                                </div>
+                            </li>
+                        @endguest
+            </ul>
              <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
              <i class="bi bi-list mobile-nav-toggle"></i>
 
@@ -41,7 +70,5 @@
              </div><!-- End Search Form -->
 
          </div>
-
      </div>
-
  </header><!-- End Header -->
